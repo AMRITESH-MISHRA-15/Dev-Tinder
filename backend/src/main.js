@@ -4,13 +4,11 @@ const app= express();
 const PORT= 3000;
 const User = require("./models/user");
 
+app.use(express.json());
+
 app.post("/signup",async(req,res)=>{
-  const userObj ={
-    firstName: "Amritesh",
-    lastName: "Mishra",
-    emailId: "amriteshmishra2004@gmail.com",
-    password: "abcde@123"
-  };
+  console.log(req.body);
+  const userObj =req.body;
 
   const user = new User(userObj);
   try{
