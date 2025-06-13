@@ -1,13 +1,34 @@
-// index.js
-import express from 'express';
+const express = require("express");
+const {connectDB} = require("./config/database");
+const app= express();
+const PORT= 3000;
+const User = require("./models/user");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+app.post("/signup",async(req,res)=>{
+  const userObj ={
+    firstName: "Amritesh",
+    lastName: "Mishra",
+    emailId: "amriteshmishra2004@gmail.com",
+    password: "abcde@123"
+  };
 
-app.get('/', (req, res) => {
-  res.send('Hello, World from Express!');
+  const user = new User(userObj);
+  try{
+    await user.save();
+    res.send("User Added Successfully...");
+  } catch(err){
+    res.status(400).send("Error saving the user: "+ err.message);
+  }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+connectDB()
+  .then(()=>{
+    console.log("Database connection established...");
+    app.listen(PORT,()=>{
+      console.log("Server is listening successfully on port 3000...");
+    });
+  })
+  .catch((err)=>{
+    console.error("Database cannot be connected !!");
+  });
+
