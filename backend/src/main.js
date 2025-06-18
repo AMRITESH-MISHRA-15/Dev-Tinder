@@ -3,15 +3,23 @@ const {connectDB} = require("./config/database");
 const app= express();
 const PORT= 3000;
 const User = require("./models/user");
+const {validateSignUpData}=require("./utils/validation");
+const bcrypt = require("bcrypt");
 
 app.use(express.json());
 
 app.post("/signup",async(req,res)=>{
-  console.log(req.body);
-  const userObj =req.body;
-
-  const user = new User(userObj);
   try{
+    // validation of data
+    validateSignUpData(req);
+    const {firstName,lastName,emailId,password} = req.body;
+
+    const passwordHash = await bcrypt.hash(password,10); 
+
+
+    const user = new User({
+      firstName,lastName,emailId,password:passwordHash,
+    });
     await user.save();
     res.send("User Added Successfully...");
   } catch(err){
@@ -44,10 +52,28 @@ app.delete("/user", async(req,res)=>{
   }
 });
 
-app.patch("/user",async(req,res)=>{
-  const userId = req.body.userId;
+app.patch("/user/:userId",async(req,res)=>{
+  const userId = req.params?.userId;
   const data=req.body;
+
   try{
+    const ALLOWED_UPDATES = [
+      "photoUrl",
+      "about",
+      "gender",
+      "age",
+      "skills"
+    ];
+
+    const isUpdateAllowed = Object.keys(data).every((k)=>
+      ALLOWED_UPDATES.includes(k)
+    );
+    if(!isUpdateAllowed){
+      throw new Error("Update not allowed");
+    }
+    if(data?.skills.length>10){
+      throw new Error("Skills can not be more than 10");
+    }
     const user= await User.findByIdAndUpdate(userId,data,{
       returnDocument: "after",
       runValidators: true,
@@ -81,7 +107,6 @@ connectDB()
     });
   })
   .catch((err)=>{
-    console.error("Database cannot be connected !!");
     console.error("❌ MongoDB connection failed:");
     console.error("Error Name:", err.name);
     console.error("Error Message:", err.message);
