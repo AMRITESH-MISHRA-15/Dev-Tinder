@@ -1,153 +1,18 @@
 const express = require("express");
 const {connectDB} = require("./config/database");
 const app= express();
-const PORT= 3000;
-const User = require("./models/user");
-const {validateSignUpData}=require("./utils/validation");
-const bcrypt = require("bcrypt");
-const validator = require("validator");
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
-const {userAuth} = require("./middlewares/auth");
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.post("/signup",async(req,res)=>{
-  try{
-    // validation of data
-    validateSignUpData(req);
-    const {firstName,lastName,emailId,password} = req.body;
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const requestRouter = require("./routes/request");
 
-    const passwordHash = await bcrypt.hash(password,10); 
-
-
-    const user = new User({
-      firstName,lastName,emailId,password:passwordHash,
-    });
-    await user.save();
-    res.send("User Added Successfully...");
-  } catch(err){
-    res.status(400).send("Error saving the user: "+ err.message);
-  }
-});
-
-app.post("/login",async(req,res)=>{
-  try{
-    const {emailId,password}=req.body;
-
-    if(!validator.isEmail(emailId)){
-      throw new Error("Enter a valid email Id");
-    }
-
-    const user = await User.findOne({emailId: emailId});
-    if(!user){
-      throw new Error("Invalid Credentials");
-    }
-
-    const isPasswordValid = await user.validatePassword(password);
-
-    if(isPasswordValid){
-      const token = await user.getJWT();
-
-      res.cookie("token",token,{
-        expires : new Date(Date.now()+ 8*3600000),
-      });
-
-      res.send("Login Successful..");
-    }
-    else{
-      throw new Error("Invalid Credentials");
-    }
-
-  } catch(err){
-    res.status(400).send(err.message);
-  }
-});
-
-app.get("/profile", userAuth ,async(req,res)=>{
-  try{
-    const user = req.user;
-    res.send(user);
-  } catch(err){
-    res.status(400).send(err.message);
-  }
-})
-
-app.post("/sendConnectionRequest", userAuth ,async(req,res)=>{
-  const user = req.user;
-  console.log("Sending a Connection Request");
-
-  res.send(user.firstName + " sent the connection request");
-});
-
-app.get("/user",async(req,res)=>{
-  const userEmail = req.body.emailId;
-  try{
-    const user = await User.find({emailId:userEmail});
-    if(user.length===0){
-      res.status(404).send("User not found");
-    }
-    else{
-      res.send(user);
-    }
-  } catch{
-    res.status(404).send("Something went wrong");
-  }
-});
-
-app.delete("/user", async(req,res)=>{
-  const userId = req.body.userId;
-  try{
-    await User.findByIdAndDelete(userId);
-    res.send("User deleted successfully.");
-  } catch(err){
-    res.status(404).send("Something went wrong");
-  }
-});
-
-app.patch("/user/:userId",async(req,res)=>{
-  const userId = req.params?.userId;
-  const data=req.body;
-
-  try{
-    const ALLOWED_UPDATES = [
-      "photoUrl",
-      "about",
-      "gender",
-      "age",
-      "skills"
-    ];
-
-    const isUpdateAllowed = Object.keys(data).every((k)=>
-      ALLOWED_UPDATES.includes(k)
-    );
-    if(!isUpdateAllowed){
-      throw new Error("Update not allowed");
-    }
-    if(data?.skills.length>10){
-      throw new Error("Skills can not be more than 10");
-    }
-    const user= await User.findByIdAndUpdate(userId,data,{
-      returnDocument: "after",
-      runValidators: true,
-    });
-    console.log(user);
-    res.send("User data updated successfully");
-  } catch(err){
-    res.status(400).send(err.message);
-  }
-})
-
-// Feed API - GET/feed - gets all the users from the database
-app.get("/feed",async (req,res)=>{
-  try{
-    const users=await User.find({});
-    res.send(users);
-  } catch(err){
-    res.status(404).send("Something went wrong");
-  }
-});
+app.use("/",authRouter);
+app.use("/",profileRouter);
+app.use("/",requestRouter);
 
 app.use("/",(req,res)=>{
   res.send("Hello world from the server...");
@@ -156,7 +21,7 @@ app.use("/",(req,res)=>{
 connectDB()
   .then(()=>{
     console.log("Database connection established...");
-    app.listen(PORT,()=>{
+    app.listen(3000,()=>{
       console.log("Server is listening successfully on port 3000...");
     });
   })
