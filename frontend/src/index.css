@@ -1,1 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+NSW+ACT+Hand+Pre:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+
+    /* custom fonts */
+    --font-DM_Sans: "DM Sans", sans-serif;
+    --font-Edu_NSW: "Edu NSW ACT Hand Pre", cursive;
+    --font-Playfair_Display: "Playfair Display", serif;
+
+    --para-font-size-1: clamp(.9rem, 1dvw, 1.25rem);
+    --para-font-size-2: clamp(.8rem, .95dvw, 1.1rem);
+    --para-font-size-3: clamp(.85rem, 1.25dvw, 1.75rem);
+
+    /* color palette */
+    --primary-color: #fbf1e5;
+    --secondary-color: #018fc7;
+    --support-color-1: #333;
+    --support-color-2: #f5f5f5;
+    --bg-color-1: #FAB8C7;
+
+    --nav-icon-height:clamp(2rem, 2dvw, 2.5rem);
+
+
+}
+
+
+@layer components {
+    .title-size {
+        font-size: clamp(1.5rem, 2.5dvw, 3rem);
+    }
+
+    .navbar-height {
+        height: clamp(2.5rem, 3.8dvw, 3.5rem);
+    }
+
+    .spacing {
+        padding-inline: clamp(1rem, 5dvw, 6rem);
+    }
+
+    .para-font-1 {
+        font-size: var(--para-font-size-1);
+    }
+
+    .para-font-2 {
+        font-size: var(--para-font-size-2);
+    }
+
+    .para-font-3 {
+        font-size: var(--para-font-size-3);
+    }
+
+
+        @media (width < 1024px) {
+    
+            .nav-menu {
+                top: 0;
+                right: 0;
+                height: 100vh;
+                flex-direction: column;
+                z-index: 1;
+                padding: 2rem;
+                width: 40%;
+                gap: 2rem;
+                background-color: var(--support-color-2);
+                border-radius: var(--global-radius);
+                transform: translateX(100%);
+            }
+    
+        }
+
+}
