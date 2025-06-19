@@ -4,12 +4,10 @@ import { Outlet } from "react-router-dom";
 
 const DefaultLayout = () => {
   return (
-    <>
+    <div className="my-container">
       <Navbar title="Dev Tinder" />
-      <main className="">
-        <Outlet />
-      </main>
-    </>
+      <Outlet />
+    </div>
   );
 };
 
