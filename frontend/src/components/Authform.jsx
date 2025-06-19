@@ -5,19 +5,32 @@ const Authform = () => {
   const [currentType, setCurrentType] = useState(SubmitType.LOGIN);
 
   return (
-    <form action="" className="form max-w-[22rem] w-[100%]">
+    <form
+      action=""
+      className="form max-w-[22rem] w-[100%] bg-[var(--support-color-3] "
+    >
       {/* main form */}
       <div className="flex flex-col flex-nowrap gap-[2.25rem]">
-        <h2 className="form-heading text-[var(--support-color-1)] font-[500]">
+        <h2 className="form-heading text-[var(--support-color-1)] font-[600] lg:font-[500]">
           {currentType}
         </h2>
         <div className="relative w-[100%]">
           <label className="input-label">Email</label>
-          <input required className="input-field" type="email" placeholder="Email" />
+          <input
+            required
+            className="input-field"
+            type="email"
+            placeholder="Email"
+          />
         </div>
         <div className="relative w-[100%]">
           <label className="input-label">Password</label>
-          <input required className="input-field" type="password" placeholder="Password" />
+          <input
+            required
+            className="input-field"
+            type="password"
+            placeholder="Password"
+          />
         </div>
         {currentType === SubmitType.SIGNUP && (
           <div className="relative w-[100%]">

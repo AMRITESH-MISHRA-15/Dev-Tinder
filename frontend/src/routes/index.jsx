@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DefaultLayout from "../layouts/default";
-import { AuthPage } from "../pages";
+import { AuthPage, HomePage } from "../pages";
 
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
         <Route element={<DefaultLayout />}>
-          <Route path="/" element={<div></div>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
         </Route>
       </Routes>
