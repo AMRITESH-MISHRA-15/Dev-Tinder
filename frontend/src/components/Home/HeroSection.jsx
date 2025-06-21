@@ -7,7 +7,7 @@ const HeroSection = () => {
   const heroTextParaContent =
     "Looking for the one... who can debug with you at 2 AM? Match with fellow coders, merge your passions, and commit to the ultimate collab.";
   return (
-    <div className="w-[100%] h-[100dvh] pt-[var(--navbar-height)] flex flex-col flex-nowrap justify-center gap-[.5rem] relative items-center">
+    <div className="bg-[var(--primary-color)] my-container w-[100%] h-[100dvh] pt-[var(--navbar-height)] flex flex-col flex-nowrap justify-center gap-[.5rem] relative items-center">
       <div className="[height:clamp(18rem,40dvw,50rem)] aspect-square bg-[var(--bg-color-1)] absolute top-[50%] left-[50%] border-[50%] transform translate-x-[-50%] translate-y-[-50%] z-0 blur-[clamp(4rem,8dvw,8rem)]"></div>
       <div className="hero-text">
         {heroHeading.map((item, index) => (

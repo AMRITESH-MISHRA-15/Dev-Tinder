@@ -25,7 +25,7 @@ const navMenuItemData = [
 
 const Navbar = ({ title = "Title" }) => {
   return (
-    <header className="px-[var(--container-inline-padding)] flex justify-between absolute top-0 left-0 w-[100%] navbar-height items-center spacing">
+    <header className="z-1 px-[var(--container-inline-padding)] flex justify-between absolute top-0 left-0 w-[100%] navbar-height items-center spacing">
       <div className="font-Playfair_Display title-size">{title}</div>
       <div>
         <img
