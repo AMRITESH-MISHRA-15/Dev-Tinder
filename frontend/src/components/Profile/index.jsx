@@ -93,49 +93,49 @@ const ProfilePage = () => {
           <div className="photos shadow-[0px_5px_20px_8px_rgba(0, 0, 0, 0.025)] bg-[var(--support-color-4)] rounded-[var(--global-radius-2)] p-[1rem]">
             <h2 className="para-font-4 font-[600] mb-[.5rem]">Photos</h2>
             <div className="photos-container h-[75dvw] md:h-auto flex-wrap md:flex-nowrap flex gap-[1.25rem] overflow-hidden ">
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""
                   className="object-center object-cover w-[100%] h-[100%]"
                 />
               </div>
-              <div className="picture flex-1 h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
+              <div className="picture flex-1 md:flex-auto h-[clamp(6.85rem,34.25dvw,10rem)] md:h-[clamp(4rem,15dvw,8rem)]  lg:h-[clamp(2rem,8.25dvw,8rem)] xl:h-[clamp(4rem,9dvw,13.5rem)] aspect-square photo-height">
                 <img
                   src="/img/photos.jpg"
                   alt=""

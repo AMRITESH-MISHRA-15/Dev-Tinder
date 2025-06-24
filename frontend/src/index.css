@@ -42,10 +42,11 @@
     --heading-font-size: clamp(1.5rem, 2.5dvw, 3rem);
     --subheading-size: clamp(1.75rem, 1.75dvw, 2rem);
     --subheading-size-2: clamp(1.5rem, 1.5dvw, 1.75rem);
+    --subheading-size-3: clamp(1.9rem, 2dvw, 2.25rem);
     --para-font-size-1: clamp(.9rem, 1dvw, 1.25rem);
     --para-font-size-2: clamp(.8rem, .95dvw, 1.1rem);
     --para-font-size-3: clamp(.85rem, 1.25dvw, 1.75rem);
-    --para-font-size-4: clamp(1.1rem, 1.25dvw, 1.5rem);
+    --para-font-size-4: clamp(1.1rem, 1.45dvw, 1.5rem);
     --input-label-size: clamp(.8rem, 1dvw, .9rem);
     --input-field-font-size: clamp(.8rem, 1dvw, 1.2rem);
     --hero-text-font-size: clamp(2.25rem, 4.1dvw, 7.25rem);
