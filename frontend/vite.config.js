@@ -23,6 +23,10 @@ export default ({ mode }) => {
           target: `${env.VITE_BACKEND_URL}`,
           changeOrigin: true,
         },
+        "/profile/view": { 
+          target: `${env.VITE_BACKEND_URL}`,
+          changeOrigin: true,
+        },
       },
     },
   });
