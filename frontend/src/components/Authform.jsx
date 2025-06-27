@@ -1,12 +1,19 @@
-import React, { useState } from "react";
 import { SubmitType } from "../utils";
-
+import useAuth from "../hooks/useAuth";
 const Authform = () => {
-  const [currentType, setCurrentType] = useState(SubmitType.LOGIN);
+  const {
+    currentType,
+    setCurrentType,
+    EmailHandler,
+    PasswordHandler,
+    SubmitHandler,
+    FirstNameHandler,
+  } = useAuth();
 
   return (
     <form
       action=""
+      onSubmit={SubmitHandler}
       className="form max-w-[22rem] w-[100%] bg-[var(--support-color-3] "
     >
       {/* main form */}
@@ -14,10 +21,23 @@ const Authform = () => {
         <h2 className="form-heading text-[var(--support-color-1)] font-[600] lg:font-[500]">
           {currentType}
         </h2>
+        {currentType === SubmitType.SIGNUP && (
+          <div className="relative w-[100%]">
+            <label className="input-label">First Name</label>
+            <input
+              onChange={FirstNameHandler}
+              required
+              className="input-field"
+              type="text"
+              placeholder="First Name"
+            />
+          </div>
+        )}
         <div className="relative w-[100%]">
           <label className="input-label">Email</label>
           <input
             required
+            onChange={EmailHandler}
             className="input-field"
             type="email"
             placeholder="Email"
@@ -27,22 +47,12 @@ const Authform = () => {
           <label className="input-label">Password</label>
           <input
             required
+            onChange={PasswordHandler}
             className="input-field"
             type="password"
             placeholder="Password"
           />
         </div>
-        {currentType === SubmitType.SIGNUP && (
-          <div className="relative w-[100%]">
-            <label className="input-label">Confirm Password</label>
-            <input
-              required
-              className="input-field"
-              type="password"
-              placeholder="Confirm Password"
-            />
-          </div>
-        )}
       </div>
       <div className="cursor-pointer">
         <button className="button">{currentType}</button>

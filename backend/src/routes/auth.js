@@ -10,13 +10,13 @@ authRouter.post("/signup",async(req,res)=>{
   try{
     // validation of data
     validateSignUpData(req);
-    const {firstName,lastName,emailId,password} = req.body;
+    const {firstName,emailId,password} = req.body;
 
     const passwordHash = await bcrypt.hash(password,10); 
 
 
     const user = new User({
-      firstName,lastName,emailId,password:passwordHash,
+      firstName,emailId,password:passwordHash,
     });
     await user.save();
     res.send("User Added Successfully...");
@@ -39,7 +39,6 @@ authRouter.post("/login",async(req,res)=>{
     }
 
     const isPasswordValid = await user.validatePassword(password);
-
     if(isPasswordValid){
       const token = await user.getJWT();
 
