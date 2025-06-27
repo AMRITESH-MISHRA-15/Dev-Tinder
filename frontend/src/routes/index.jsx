@@ -11,19 +11,18 @@ const ProfileEditPage = lazy(() => import("../pages/ProfileEditPage"));
 const LoadingPage = lazy(() => import("../pages/LoadingPage"));
 
 const AppRoutes = () => {
-
   return (
     <Router>
       <Suspense fallback={<LoadingPage />}>
         <Routes>
           <Route element={<DefaultLayout />}>
+            <Route path="/auth" element={<AuthPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/feed" element={<FeedPage />} />
               <Route path="/edit" element={<ProfileEditPage />} />
             </Route>
-            <Route path="/auth" element={<AuthPage />} />
           </Route>
         </Routes>
       </Suspense>

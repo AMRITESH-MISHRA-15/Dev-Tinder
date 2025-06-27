@@ -1,8 +1,12 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
+import useAuthStore from "../../store/useAuthStore";
+
 
 const ProfilePage = () => {
   const { LogoutHandler } = useAuth();
+  const user = useAuthStore((state) => state.user);
+  
 
 
   return (
@@ -61,7 +65,7 @@ const ProfilePage = () => {
           <div className="bio shadow-[0px_5px_20px_8px_rgba(0, 0, 0, 0.025)] flex md:flex-row flex-col bg-[var(--support-color-4)] rounded-[var(--global-radius-2)] overflow-hidden className='para-font-1'">
             <div className="profile-img h-[clamp(10rem,120dvw,25rem)] md:h-[14rem] aspect-square">
               <img
-                src="https://preview.redd.it/qb5mm556vei71.jpg?auto=webp&s=29bee2062481c32630dacc1f6c74b9f3a764e03a"
+                src={user.photoUrl}
                 alt="img"
                 className="inline-block h-[100%] w-[100%] object-cover object-center"
               />
@@ -69,27 +73,24 @@ const ProfilePage = () => {
             <div className="profile-info  flex flex-col flex-1 p-[1rem_1.25rem] gap-[.75rem]">
               <div>
                 <div className="profile-name font-[600] [font-size:var(--subheading-size-2)]">
-                  Vishal Minj, 22
+                  {user.firstName}
                 </div>
                 <div className="profile-location para-font-2 text-zinc-500">
-                  MDGR
+                  Location
                 </div>
               </div>
               <div className="profile-discription para-font-1 max-h-[4.25rem] overflow-hidden">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet,
-                quasi? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Optio voluptate iusto tempore fugiat magni facilis placeat
-                molestiae odio voluptatum, perferendis, in recusandae,
-                laboriosam minima! Excepturi laboriosam nobis ullam
-                necessitatibus rem?
+                {user.about}
               </div>
               <div className="profile-bad flex flex-wrap gap-[.75rem] flex-1 items-start">
-                <span className="badge bg-pink-200 p-[.25rem_.5rem] text-pink-900 rounded font-[500]">
-                  Frontend
-                </span>
-                <span className="badge bg-pink-200 p-[.25rem_.5rem] text-pink-900 rounded font-[500]">
-                  React
-                </span>
+                
+                {
+                  user.skills.map((skill) => (
+                    <span className="badge bg-pink-200 p-[.25rem_.5rem] text-pink-900 rounded font-[500]">
+                      {skill}
+                    </span>
+                  ))
+                }
               </div>
             </div>
           </div>

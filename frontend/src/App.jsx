@@ -1,8 +1,13 @@
-import Navbar from "./components/Navbar";
+import { useEffect } from "react";
 import AppRoutes from "./routes";
+import useAuthStore from "./store/useAuthStore";
+const App = () => {
+    const rehydrate = useAuthStore((state) => state.rehydrate);
 
-const App = () => (
-    <AppRoutes />
-);
+    useEffect(() => {
+        rehydrate();
+    },[])
+    return <AppRoutes />
+};
 
 export default App;

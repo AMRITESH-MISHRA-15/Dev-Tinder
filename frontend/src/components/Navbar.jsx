@@ -18,8 +18,8 @@ const navMenuItemData = [
   },
   {
     id: 4,
-    pageName: "Contact",
-    url: "/contact",
+    pageName: "Profile",
+    url: "/profile",
   },
 ];
 
