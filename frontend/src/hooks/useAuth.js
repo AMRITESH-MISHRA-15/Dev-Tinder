@@ -4,7 +4,9 @@ import { SubmitType } from "../utils";
 import LoginAPI from "../api/LoginAPI";
 import SignUpAPI from "../api/SignUpAPI";
 import LogoutAPI from "../api/LogoutAPI";
+import ProfileAPI from "../api/ProfileAPI";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/useAuthStore";
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -12,6 +14,8 @@ const useAuth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
+
+  const { set } = useAuthStore();
 
   const SubmitHandler = async (e) => {
     e.preventDefault();
@@ -24,6 +28,8 @@ const useAuth = () => {
     } else {
       data = await LoginAPI(email, password);
       if (data.status === 200) {
+        const userData = await ProfileAPI();
+        set({ user: userData, token: localStorage.getItem("token") });
         navigate("/");
       }
     }
