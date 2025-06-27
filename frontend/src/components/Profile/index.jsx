@@ -1,6 +1,10 @@
 import React from "react";
+import useAuth from "../../hooks/useAuth";
 
 const ProfilePage = () => {
+  const { LogoutHandler } = useAuth();
+
+
   return (
     <div className=" h-[100%] pt-[calc(var(--navbar-height)+.75rem)] pb-[.75rem]">
       <main className="profile-container realtive">
@@ -37,14 +41,14 @@ const ProfilePage = () => {
           </ul>
           <ul className="flex flex-col gap-[1.5rem] font-[500]">
             <hr />
-            <li className="flex items-center space-x-2 ">
+            <li className="flex items-center space-x-2 cursor-pointer">
               <img
                 src="/icons/editProfile.svg"
                 className="aspect-square h-[1.75rem]"
               />
               <span className="para-font-1">Edit Profile</span>
             </li>
-            <li className="flex items-center space-x-2 ">
+            <li className="flex items-center space-x-2 hover:text-pink-500 cursor-pointer" onClick={LogoutHandler}>
               <img
                 src="/icons/logout.svg"
                 className="aspect-square h-[1.75rem]"
