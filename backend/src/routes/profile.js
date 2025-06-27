@@ -9,7 +9,18 @@ const User = require("../models/user");
 profileRouter.get("/profile/view", userAuth ,async(req,res)=>{
   try{
     const user = req.user;
-    res.send(user);
+
+    const safeUserData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      photoUrl: user.photoUrl,
+      age: user.age,
+      gender: user.gender,
+      about: user.about,
+      skills: user.skills,
+    };
+
+    res.json(safeUserData);
   } catch(err){
     res.status(400).send("ERROR : "+ err.message);
   }
