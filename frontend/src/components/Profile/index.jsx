@@ -1,13 +1,11 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAuthStore from "../../store/useAuthStore";
-
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const { LogoutHandler } = useAuth();
   const user = useAuthStore((state) => state.user);
-  
-
 
   return (
     <div className=" h-[100%] pt-[calc(var(--navbar-height)+.75rem)] pb-[.75rem]">
@@ -45,14 +43,17 @@ const ProfilePage = () => {
           </ul>
           <ul className="flex flex-col gap-[1.5rem] font-[500]">
             <hr />
-            <li className="flex items-center space-x-2 cursor-pointer">
+            <Link to={"/edit"} className="flex items-center space-x-2 cursor-pointer">
               <img
                 src="/icons/editProfile.svg"
                 className="aspect-square h-[1.75rem]"
               />
               <span className="para-font-1">Edit Profile</span>
-            </li>
-            <li className="flex items-center space-x-2 hover:text-pink-500 cursor-pointer" onClick={LogoutHandler}>
+            </Link>
+            <li
+              className="flex items-center space-x-2 hover:text-pink-500 cursor-pointer"
+              onClick={LogoutHandler}
+            >
               <img
                 src="/icons/logout.svg"
                 className="aspect-square h-[1.75rem]"
@@ -83,14 +84,11 @@ const ProfilePage = () => {
                 {user.about}
               </div>
               <div className="profile-bad flex flex-wrap gap-[.75rem] flex-1 items-start">
-                
-                {
-                  user.skills.map((skill) => (
-                    <span className="badge bg-pink-200 p-[.25rem_.5rem] text-pink-900 rounded font-[500]">
-                      {skill}
-                    </span>
-                  ))
-                }
+                {user.skills.map((skill) => (
+                  <span className="badge bg-pink-200 p-[.25rem_.5rem] text-pink-900 rounded font-[500]">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
