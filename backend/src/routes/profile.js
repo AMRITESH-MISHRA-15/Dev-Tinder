@@ -4,6 +4,8 @@ const {userAuth} = require("../middlewares/auth");
 const {validateEditProfileData}= require("../utils/validation");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const validator = require("validator");
+
 
 
 profileRouter.get("/profile/view", userAuth ,async(req,res)=>{
@@ -52,6 +54,10 @@ profileRouter.patch("/profile/password",userAuth, async(req,res)=>{
     const {password, newPassword} = req.body;
     if(!password || !newPassword){
       throw new Error("Both old and new passwords are required.");
+    }
+
+    if(!validator.isStrongPassword(newPassword)){
+      throw new Error("Please Enter a strong password");
     }
 
     const loggedInUser = req.user;
