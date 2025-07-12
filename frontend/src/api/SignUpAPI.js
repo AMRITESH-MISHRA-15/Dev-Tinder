@@ -13,7 +13,7 @@ const SignUpAPI = async (firstName, email, password) => {
     });
     return response;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };
 

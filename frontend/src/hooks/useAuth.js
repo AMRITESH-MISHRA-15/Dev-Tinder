@@ -7,6 +7,7 @@ import LogoutAPI from "../api/LogoutAPI";
 import ProfileAPI from "../api/ProfileAPI";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
+import { toast } from "react-hot-toast";
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const useAuth = () => {
       data = await SignUpAPI(firstName, email, password);
       if (data.status === 200) {
         setCurrentType(SubmitType.LOGIN);
+      }else{
+        const error= await data.text();
+        toast.error(error);
       }
     } else {
       data = await LoginAPI(email, password);

@@ -27,6 +27,10 @@ export default ({ mode }) => {
           target: `${env.VITE_BACKEND_URL}`,
           changeOrigin: true,
         },
+        "/profile/password": {
+          target: `${env.VITE_BACKEND_URL}`,
+          changeOrigin: true,
+        }
       },
     },
   });
