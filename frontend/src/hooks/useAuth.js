@@ -25,6 +25,8 @@ const useAuth = () => {
       data = await SignUpAPI(firstName, email, password);
       if (data.status === 200) {
         setCurrentType(SubmitType.LOGIN);
+        const message= await data.text();
+        toast.success(message);
       }else{
         const error= await data.text();
         toast.error(error);
