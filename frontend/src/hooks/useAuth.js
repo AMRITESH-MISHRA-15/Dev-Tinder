@@ -55,6 +55,7 @@ const useAuth = () => {
 
   const LogoutHandler = async () => {
     await LogoutAPI();
+    set({ user: null});
     navigate("/auth");
   };
 

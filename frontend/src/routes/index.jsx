@@ -8,24 +8,24 @@ const HomePage = lazy(() => import("../pages/HomePage"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 const FeedPage = lazy(() => import("../pages/FeedPage"));
 const ProfileEditPage = lazy(() => import("../pages/ProfileEditPage"));
-const LoadingPage = lazy(() => import("../pages/LoadingPage"));
+const LoginRoute = lazy(() => import("./LoginRoute"));
 
 const AppRoutes = () => {
   return (
     <Router>
-      <Suspense fallback={<LoadingPage />}>
-        <Routes>
-          <Route element={<DefaultLayout />}>
+      <Routes>
+        <Route element={<DefaultLayout />}>
+          <Route element={<LoginRoute />}>
             <Route path="/auth" element={<AuthPage />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/feed" element={<FeedPage />} />
-              <Route path="/edit" element={<ProfileEditPage />} />
-            </Route>
           </Route>
-        </Routes>
-      </Suspense>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/feed" element={<FeedPage />} />
+            <Route path="/edit" element={<ProfileEditPage />} />
+          </Route>
+        </Route>
+      </Routes>
     </Router>
   );
 };
