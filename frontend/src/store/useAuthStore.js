@@ -12,7 +12,7 @@ const useAuthStore = create((set) => ({
       set({ loading: true });
       const token = Cookies.get("token");
       if(!token) {
-        set({ user: null });
+        set({ user: null,loading: false });
         return;
       }
       const userData = await ProfileAPI();

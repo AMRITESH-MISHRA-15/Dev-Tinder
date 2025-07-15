@@ -87,6 +87,10 @@ profileRouter.post("/profile/forgot-password",async(req,res)=>{
     if(!emailId || !newPassword){
       throw new Error("Email and New password both are required");
     }
+
+    if(!validator.isStrongPassword(newPassword)){
+      throw new Error("Please Enter a strong password");
+    }
     
     const user = await User.findOne({emailId});
     if(!user){
