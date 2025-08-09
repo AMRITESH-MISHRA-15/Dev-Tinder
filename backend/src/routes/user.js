@@ -1,7 +1,7 @@
 const express = require("express");
 const userRouter = express.Router();
 const {userAuth} = require("../middlewares/auth");
-const ConnectionRequest = require("../models/connectionRequest");
+const {ConnectionRequestModel} = require("../models/connectionRequest");
 const User = require("../models/user");
 
 const USER_SAFE_DATA = "firstName lastName photoUrl age gender about skills";
@@ -39,7 +39,7 @@ userRouter.get(
     try{
       const loggedInUser = req.user;
 
-      const connectionRequest = await ConnectionRequest.find({
+      const connectionRequest = await ConnectionRequestModel.find({
         $or:[
           {toUserId: loggedInUser._id,status:"accepted"},
           {fromUserId: loggedInUser._id, status:"accepted"},
@@ -73,7 +73,7 @@ userRouter.get("/feed", userAuth, async(req,res)=>{
     const skip = (page-1)*limit;
 
     // Find all connection requests sent or received
-    const connectionRequests = await ConnectionRequest.find({
+    const connectionRequests = await ConnectionRequestModel.find({
       $or: [
         {fromUserId: loggedInUser._id},
         {toUserId: loggedInUser._id},
