@@ -1,7 +1,7 @@
 const express = require("express");
 const requestRouter = express.Router();
 const {userAuth} = require("../middlewares/auth");
-const ConnectionRequest = require("../models/connectionRequest");
+const {ConnectionRequestModel} = require("../models/connectionRequest");
 const User = require("../models/user");
 
 requestRouter.post("/request/send/:status/:toUserId", userAuth ,async(req,res)=>{
@@ -26,7 +26,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth ,async(req,res)=>
         .json({message: "User not found"})
     }
 
-    const existingConnectionRequest = await ConnectionRequest.findOne({
+    const existingConnectionRequest = await ConnectionRequestModel.findOne({
       $or:[
         { fromUserId, toUserId },
         { fromUserId: toUserId, toUserId: fromUserId },
@@ -38,7 +38,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth ,async(req,res)=>
         .send("Connection Request Already Exists  !!");
     }
 
-    const connectionRequest = new ConnectionRequest({
+    const connectionRequest = new ConnectionRequestModel({
       fromUserId,
       toUserId,
       status,
@@ -55,7 +55,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth ,async(req,res)=>
     res.status(400).send("ERROR : "+err.message);
   }
 
-  res.send(user.firstName + " sent the connection request");
+  res.send(fromUserId.firstName + " sent the connection request");
 });
 
 requestRouter.post(
@@ -71,7 +71,7 @@ requestRouter.post(
         throw new Error("Status not allowed");
       }
 
-      const connectionRequest = await ConncectionRequest.findOne({
+      const connectionRequest = await ConnectionRequestModel.findOne({
         _id:requestId,
         toUserId:loggedInUser._id,
         status:"interested",
