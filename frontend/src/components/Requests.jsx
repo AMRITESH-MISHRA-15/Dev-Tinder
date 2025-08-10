@@ -34,7 +34,7 @@ const Requests = () => {
 
   useEffect(() => {
     fetchRequests();
-  }, []);
+  }, [requests]);
 
   if (!requests || requests.length === 0)
     return <h1 className="flex justify-center my-10">No requests Found</h1>;
@@ -69,11 +69,11 @@ const Requests = () => {
               <button
                 className="btn btn-primary mx-2"
                 onClick={() => reviewRequest("rejected", request._id)}
-              ></button>
+              >Reject</button>
               <button
                 className="btn btn-secondary mx-2"
                 onClick={() => reviewRequest("accepted", request._id)}
-              ></button>
+              >Accept</button>
             </div>
           </div>
         );

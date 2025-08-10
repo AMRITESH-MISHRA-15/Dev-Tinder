@@ -24,7 +24,7 @@ const Feed = () => {
 
   useEffect(() => {
     getFeed();
-  }, []);
+  }, [feed]);
   if (!feed || feed.length === 0)
     return <h1 className="flex justify-center my-10">No new feed found</h1>;
   return (
