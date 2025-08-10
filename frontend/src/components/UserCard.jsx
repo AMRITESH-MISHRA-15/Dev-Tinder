@@ -1,19 +1,25 @@
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/userSlice";
+import axios from "axios";
+import { BASE_URL } from "@utils/constants";
+
 
 const UserCard = ({ user }) => {
   const {_id, firstName, lastName, photoUrl, age, gender, about } = user;
   const dispatch = useDispatch();
 
-  const handleSendRequest = async (status, userId) => {
+  const handleSendRequest = async (status, toUserId) => {
     try {
       const res = await axios.post(
-        BASE_URL + "/request/send/" + status + "/" + userId,
+        BASE_URL + "/request/send/" + status + "/" + toUserId,
         {},
         { withCredentials: true }
       );
-      dispatch(removeUserFromFeed(userId));
-    } catch (err) {}
+
+      dispatch(removeUserFromFeed(toUserId));
+    } catch (err) {
+      
+    }
   };
  
 
